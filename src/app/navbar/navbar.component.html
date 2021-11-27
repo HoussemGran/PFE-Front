@@ -1,0 +1,50 @@
+
+
+<mat-toolbar>
+  
+     <img id="header"  src="/assets/images/ProxymLogo.png"> 
+     <span style="font-size: 15px;">{{login}} [{{role}}]</span>
+    <span class="example-spacer"></span>
+    
+    <button mat-icon-button title="My Settings">
+    <mat-icon class="icon">settings icon</mat-icon>
+    </button>
+    <button (click)='logout()' mat-icon-button title="Log out">
+      <mat-icon class="icon">lock icon</mat-icon>
+      </button>
+
+    
+  </mat-toolbar>
+  <mat-toolbar style="margin-top: -25px;">
+    <div id="nav">
+
+      <button routerLink="/admin" *ngIf="role == 'admin'" mat-icon-button title="Home">
+      <mat-icon>home</mat-icon>
+        </button>
+        <button routerLink="/guest" *ngIf="role == 'guest'" mat-icon-button title="Home">
+          <mat-icon>home</mat-icon>
+            </button>
+
+      <button *ngIf="role == 'admin'" mat-icon-button routerLink="/admin/users" title="User Management">
+        <mat-icon>people</mat-icon>
+        </button>
+
+        <button *ngIf="role == 'admin'" mat-icon-button [routerLink]="['/admin/library']" title="Library">
+          <mat-icon>book</mat-icon>
+        </button>
+
+        <span id="testProject" >
+          <mat-form-field  appearance="fill">
+            <mat-label>test project</mat-label>
+            <mat-select (selectionChange)="onChange($event)" [(value)]="selectedProject">
+              <mat-option *ngFor="let proj of projects" [value]="proj.name">
+                  {{proj.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+        </span>
+    </div>
+
+  
+  </mat-toolbar>

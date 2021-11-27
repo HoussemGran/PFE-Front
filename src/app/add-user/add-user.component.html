@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>   
+
+<div class="container" style="margin-top: 50px;">
+
+    <div class="form-containter">
+
+        <form [formGroup]="addUserForm" class="example-form" (submit)="submit()" autocomplete="off" >
+            
+            <mat-form-field class="form-field" appearence="fill">
+                <mat-label> Login </mat-label>
+                <input matInput formControlName="login" required>
+                <mat-error *ngIf="addUserForm.controls.login.invalid">
+                    <span> this field is required </span>
+                </mat-error>
+            </mat-form-field>  
+            <br>
+    
+                <mat-form-field appearence="fill">
+                    <mat-label> First Name </mat-label>
+                    <input matInput formControlName="firstName" required>
+                    <mat-error *ngIf="addUserForm.controls.firstName.invalid">
+                        <span> this field is required </span>
+                    </mat-error>
+                </mat-form-field> 
+                <br>
+
+            <mat-form-field appearence="fill">
+                    <mat-label> Last Name </mat-label>
+                    <input matInput formControlName="lastName" required>
+                    <mat-error *ngIf="addUserForm.controls.lastName.invalid">
+                        <span> this field is required </span>
+                    </mat-error>
+                </mat-form-field> 
+                <br>
+            <mat-form-field appearence="fill">
+                    <mat-label> Password </mat-label>
+                    <input type="password" matInput formControlName="password" required>
+                    <mat-error *ngIf="addUserForm.controls.password.invalid">
+                        <span *ngIf="addUserForm.controls.password.errors.required"> This field is required </span>
+                        <sapn *ngIf="addUserForm.controls.password.errors"> Week password </sapn>
+                    </mat-error>
+                </mat-form-field>         
+
+                <br>
+            <mat-form-field appearence="fill">
+                    <mat-label> Email </mat-label>
+                    <input type="email" matInput formControlName="email" required>
+                    <mat-error *ngIf="addUserForm.controls.email.invalid">
+                        <span> Invalid email </span>
+                    </mat-error>
+            </mat-form-field>         
+            <br>
+            <mat-form-field appearence="fill">
+                <mat-label> Role </mat-label>
+                <mat-select [(ngModel)]="selected" formControlName="role">
+                    <mat-option value="guest"> guest </mat-option>
+                    <mat-option value="admin"> admin </mat-option>
+                </mat-select>
+            </mat-form-field> 
+
+            <mat-form-field appearance="fill">
+                <mat-label> Expiration Date</mat-label>
+                <input matInput formControlName="date" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <br><br>
+            <button mat-raised-button color="primary" type="submit">Create</button>
+            <button mat-raised-button color="accent" type="reset"> Cancel </button>
+        </form>
+
+    </div>
+
+</div>

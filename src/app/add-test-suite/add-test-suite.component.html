@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+<mat-grid-list cols="3">
+    <mat-grid-tile >
+        
+       <app-tree></app-tree>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile >
+        
+        <form [formGroup]="addTestSuite" (submit)="submit()" autocomplete="off">
+
+            <mat-form-field class="example-form" appearance = "fill">
+               <mat-label> Test suite name </mat-label> 
+                <input matInput formControlName="name" required>
+                <mat-error *ngIf="addTestSuite.controls.name.invalid">
+                    <span> This field is required </span>
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <input type="hidden" formControlName="projectID" [(ngModel)]='projectID'>
+        
+            <mat-form-field appearance = "fill" class="example-form">
+                <mat-label> Details </mat-label>
+                <textarea formControlName="details" style="height: 100px;" matInput placeholder="Details"></textarea>
+              </mat-form-field>
+              <br><br>
+
+             
+            <button mat-raised-button color="primary"> Save </button>  
+            <button mat-stroked-button color="basic" type="reset"> Cancel </button>  
+        </form>
+        
+    </mat-grid-tile>
+
+    <mat-grid-tile >
+
+    </mat-grid-tile>
+    
+    <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>
+
+
+
+

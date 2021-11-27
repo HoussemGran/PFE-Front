@@ -1,0 +1,40 @@
+
+<app-navbar></app-navbar>
+
+<div class="container" style="margin-top: 50px;">
+    <div class="form-container">
+
+    <form #values="ngForm" (ngSubmit)="submit(values)" class="example-form"  autocomplete="off">
+
+    <mat-form-field class="example-full-width" appearance="fill" >
+      
+      <mat-label> Name </mat-label>
+      <input matInput style="width: 200px;" name="name" required [(ngModel)]='nameValue'>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+        <mat-label> Description </mat-label>
+        <textarea [(ngModel)]='descriptionValue' name="description" style="height: 100px;" matInput placeholder="Description"></textarea>
+      </mat-form-field>
+      
+      <br>
+
+      <mat-checkbox [(ngModel)] = 'active' name="active" class="example-margin">
+        Active
+    </mat-checkbox>
+<br>
+
+    <mat-checkbox [(ngModel)]='Public' name="Public" class="example-margin">
+        Public
+    </mat-checkbox> 
+    <input type="hidden" name="projectID" [(ngModel)]="projectID">
+    <br><br>
+    <button mat-raised-button color="primary" type="submit">Update</button>
+    <button mat-raised-button color="accent" type="reset"> Clear </button>
+    
+  </form>
+</div>
+</div>
+
+

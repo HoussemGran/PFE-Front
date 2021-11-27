@@ -1,0 +1,29 @@
+
+<span style="float: right;" class="menu">
+
+    <button mat-button *ngIf="role == 'admin'" [matMenuTriggerFor]="afterMenu"><mat-icon>reorder</mat-icon></button> 
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+        <a routerLink="addtotestplan">
+    
+    </a>
+    <button (click)='delete()' mat-menu-item><mat-icon>delete_outline</mat-icon> Delete</button>
+
+    </mat-menu>
+</span>
+<mat-card-header>
+    
+    <mat-card-title>Test Case </mat-card-title>
+    <mat-card-subtitle> {{data.testCase.title}} </mat-card-subtitle>
+</mat-card-header>
+<hr>
+    <div *ngIf="data.testCase.preconditions != null">
+        <h3> Preconditions </h3>
+        <p> {{data.testCase.preconditions}} </p>
+    </div>
+    <br>
+    <div *ngIf="data.testCase.summary != null">
+        <h3> Summary </h3>
+        <p> {{data.testCase.summary}} </p>
+    </div>
+
+    

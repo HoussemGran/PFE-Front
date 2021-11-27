@@ -1,0 +1,88 @@
+
+<app-navbar></app-navbar>
+
+<mat-grid-list cols="3">
+    <mat-grid-tile >
+        
+       <app-tree></app-tree>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="1" >
+
+<mat-card *ngIf="testSuite != undefined">
+    <span style="float: right;" class="menu">
+    <button mat-button  [matMenuTriggerFor]="afterMenu"><mat-icon>reorder</mat-icon></button> 
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+
+    <button routerLink='update' mat-menu-item><mat-icon>create</mat-icon> Edit</button>
+    <button (click)='delete()' mat-menu-item><mat-icon>delete_outline</mat-icon> Delete</button>
+    <button routerLink='' mat-menu-item><mat-icon>move_to_inbox</mat-icon>Move/copie </button>
+
+    </mat-menu>
+</span>
+
+        <mat-card-header style="margin-left: 40%;">
+            
+        <mat-card-title>Test Suite </mat-card-title>
+        <mat-card-subtitle> {{testSuiteName}}  </mat-card-subtitle>
+        
+    </mat-card-header>
+
+    <hr>
+
+    <div>
+        <h3> Détails </h3>
+        <p>{{testSuiteDetails}}</p>
+    </div>
+        <br>
+        <div>
+            <p *ngIf="testSuite.keywords.length == 0"> <span style="font-size: large;font-weight: bold;"> Keywords : </span>none</p>
+            
+            <mat-chip-list *ngIf="testSuite.keywords.length != 0" class="example-chip" cdkDropList >
+             <h3> Keywords : </h3>       
+            <mat-chip  (removed)="removeKeyword(keyword)" [removable]="removable"
+             class="example-box"  *ngFor="let keyword of keywords">
+                
+                {{keyword.keyword}}    
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            
+  
+        </mat-chip>
+  
+    </mat-chip-list>
+           
+        </div>
+        <button routerLink='addTC' mat-menu-item><mat-icon>control_point</mat-icon>Create Test Case</button>
+        <button (click)='openDialog()' mat-menu-item><mat-icon>note_add</mat-icon>Import Test Case from Lib</button>
+
+        
+        
+            
+            <mat-expansion-panel (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+<mat-expansion-panel-header>
+<mat-panel-title>
+
+    <mat-icon>attach_file</mat-icon>Import Test Case from CSV File
+        
+</mat-panel-title>
+<mat-panel-description>
+</mat-panel-description>
+</mat-expansion-panel-header>
+<input class="form-control" type="file" 
+            (change)="onChange($event)">
+  
+    <button (click)="onUpload()" 
+        class="btn btn-success">
+        Upload
+    </button>
+</mat-expansion-panel>
+
+  </mat-card>
+
+</mat-grid-tile>
+
+
+<mat-grid-tile></mat-grid-tile>
+</mat-grid-list>

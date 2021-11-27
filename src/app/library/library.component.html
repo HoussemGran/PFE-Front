@@ -1,0 +1,187 @@
+<app-navbar></app-navbar>
+
+
+<mat-grid-list  cols='3'>
+
+<mat-grid-tile>
+    <div class="margin">
+        <!-- Show test suites -->
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                   My Test Suite
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Click to show test suites
+                  </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-selection-list #testSuite [multiple]="false">
+                <mat-list-option (click)="dialogTS(testSuite)" [value]='item._id' *ngFor="let item of testSuites">
+                  {{item.name}}
+                </mat-list-option>
+              </mat-selection-list>
+        </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+</mat-grid-tile>
+
+<mat-grid-tile>
+
+    <div class="margin">
+        <!-- Show test cases -->
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+               My Test Case
+              </mat-panel-title>
+              <mat-panel-description>
+                Click to show Test Cases
+              </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-selection-list #list [multiple]="false">
+            <mat-list-option (click)="dialogTC(list)" [value]='item._id' *ngFor="let item of testCases">
+              {{item.title}}
+            </mat-list-option>
+          </mat-selection-list>
+    </mat-expansion-panel>
+    </mat-accordion>
+</div>
+</mat-grid-tile>
+
+
+<mat-grid-tile style="height: 500px;">
+
+    <div class="margin">
+
+    <mat-accordion>
+
+        <!-- Create test Suite -->
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Test Suite
+          </mat-panel-title>
+          <mat-panel-description>
+            Click to ceate a test suite
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="addTestSuite" (submit)="submitTestSuite()" autocomplete="off">
+
+            <mat-form-field class="example-form" appearance = "fill">
+               <mat-label> Test suite name </mat-label> 
+                <input matInput formControlName="name" required>
+                <mat-error *ngIf="addTestSuite.controls.name.invalid">
+                    <span> This field is required </span>
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+        
+            <mat-form-field appearance = "fill" class="example-form">
+                <mat-label> Details </mat-label>
+                <textarea formControlName="details" style="height: 100px;" matInput placeholder="Details"></textarea>
+              </mat-form-field>
+              <br><br>
+
+             
+            <button mat-raised-button color="primary"> Save </button>  
+            <button mat-stroked-button color="basic" type="reset"> Cancel </button>  
+        </form>
+        
+
+      </mat-expansion-panel>
+
+      <!-- create test case -->
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Test Case
+          </mat-panel-title>
+          <mat-panel-description>
+            Click to ceate a test case
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="addTestCase" (submit)="submitTestCase()" autocomplete="off">
+
+            <mat-form-field class="example-form" appearance = "fill">
+               <mat-label> Test Case Title </mat-label> 
+                <input matInput formControlName="title" required>
+                <mat-error *ngIf="addTestCase.controls.title.invalid">
+                    <span> This field is required </span>
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+        
+            <mat-form-field appearance = "fill" class="example-form">
+                <mat-label> Preconditions </mat-label>
+                <textarea formControlName="preconditions" style="height: 100px;" matInput placeholder="Preconditions"></textarea>
+              </mat-form-field>
+
+              <br><br>
+              <mat-form-field appearance = "fill" class="example-form">
+                <mat-label> Summary </mat-label>
+                <textarea formControlName="summary" style="height: 100px;" matInput placeholder="Summary"></textarea>
+              </mat-form-field>
+              <br><br>
+
+              <mat-form-field appearance='fill'>
+                <mat-label> Status </mat-label>
+                <mat-select  formControlName="status">
+                    <mat-option  *ngFor="let statut of status" [value]="statut.value"> 
+                    {{statut.title}}
+                 </mat-option>
+                 
+                </mat-select>
+                <mat-error *ngIf="addTestCase.controls.title.invalid">
+                  <span> This field is required </span>
+              </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance='fill'>
+                <mat-label> Importance </mat-label>
+                <mat-select formControlName="importance">
+                    <mat-option *ngFor="let important of importance" [value]="important.value"> 
+                    {{important.title}}
+                 </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addTestCase.controls.title.invalid">
+                  <span> This field is required </span>
+              </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance='fill'>
+                <mat-label> Execution Type </mat-label>
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let type of types" [value]="type.value"> 
+                    {{type.title}}
+                 </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addTestCase.controls.title.invalid">
+                  <span> This field is required </span>
+              </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance='fill'>
+                  <mat-label> Estimated Duration (min) </mat-label>
+                <input matInput type="number" formControlName="duration">
+              </mat-form-field>
+
+              <br>  
+            <button mat-raised-button color="primary"> Create </button>  
+            <button mat-stroked-button color="basic" type="reset"> Cancel </button>  
+        </form>
+        
+
+      </mat-expansion-panel>
+
+
+    </mat-accordion>
+</div>
+</mat-grid-tile>
+
+</mat-grid-list>
+

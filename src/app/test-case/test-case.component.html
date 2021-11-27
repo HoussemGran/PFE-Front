@@ -1,0 +1,146 @@
+
+<app-navbar></app-navbar>
+
+<mat-grid-list cols="3" style="display: flex;">
+
+    <mat-grid-tile style="height: 200px;">
+        
+       <app-tree></app-tree>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="1" style="height: 300px;">
+        
+<mat-card  *ngIf="testCase != undefined" style="width: 90%;position: absolute;top: 0px;">
+    <span style="float: right;" class="menu">
+
+        <button mat-button  [matMenuTriggerFor]="afterMenu"><mat-icon>reorder</mat-icon></button> 
+        <mat-menu #afterMenu="matMenu" xPosition="after">
+            <a routerLink="addtotestplan">
+        <button *ngIf="testplanID != null" routerLink='addtotestplan' mat-menu-item><mat-icon>check_circle_outline</mat-icon>
+            Add to test plans 
+         </button>
+        </a>
+        <button (click)='delete()' mat-menu-item><mat-icon>delete_outline</mat-icon> Delete</button>
+        <button routerLink='' mat-menu-item><mat-icon>move_to_inbox</mat-icon>Move/copie </button>
+    
+        </mat-menu>
+    </span>
+    <mat-card-header style="margin-left: 40%;">
+        
+        <mat-card-title>Test Case </mat-card-title>
+        <mat-card-subtitle> {{testCase.title}} </mat-card-subtitle>
+    </mat-card-header>
+    <hr>
+        <div *ngIf="testCase.preconditions != null">
+            <h3> Preconditions </h3>
+            <p> {{testCase.preconditions}} </p>
+        </div>
+        <br>
+        <div *ngIf="testCase.summary != null">
+            <h3> Summary </h3>
+            <p> {{testCase.summary}} </p>
+        </div>
+        <br>
+        <div>
+            <mat-form-field>
+            <mat-label> Status </mat-label>
+                <mat-select  [(ngModel)]='selectedStatus'>
+                    <mat-option  *ngFor="let statut of status" [value]="statut.value"> 
+                    {{statut.title}}
+                 </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label> Importance </mat-label>
+                <mat-select [(ngModel)]="selectedImportance" >
+                    <mat-option *ngFor="let important of importance" [value]="important.value"> 
+                    {{important.title}}
+                 </mat-option>
+                </mat-select>
+              </mat-form-field>        
+
+              <mat-form-field>
+                <mat-label> Execution Type </mat-label>
+                <mat-select [(ngModel)]="selectedType">
+                    <mat-option *ngFor="let type of types" [value]="type.value"> 
+                    {{type.title}}
+                 </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label> Estimated Duration (min) </mat-label>
+              <input [(ngModel)]="duration" matInput type="number">
+            </mat-form-field>
+
+        </div>
+
+        <div>
+            <p *ngIf="testCase.keywords.length == 0"> 
+
+            <span style="font-size: large;font-weight: bold;"> Keywords :
+                
+           <button mat-icon-button color="primary" (click)='addKeyword()'>
+            <mat-icon >add</mat-icon></button> 
+        
+        </span>none
+        
+        </p>
+            
+            <mat-chip-list *ngIf="testCase.keywords.length != 0" class="example-chip" cdkDropList >
+                <span style="font-size: large;font-weight: bold;"> Keywords :
+                
+                    <button mat-icon-button color="primary" (click)='addKeyword()'>
+                     <mat-icon >add</mat-icon></button> 
+                 
+                 </span>       
+            <mat-chip class="example-box" *ngFor="let keyword of testCase.keywords">
+
+            {{keyword.keyword}}
+  
+        </mat-chip>
+  
+    </mat-chip-list>
+           
+        </div>  
+        <br>
+        <div>
+
+            
+
+            <p *ngIf="testCase.platform.length ==0" > 
+                
+                <span style="font-size: large;font-weight: bold;"> Platforms : 
+            
+                <button mat-icon-button color="primary" (click)='addPlatform()'>
+                    <mat-icon >add</mat-icon></button> 
+            </span>none
+        
+        </p>
+            
+            <mat-chip-list *ngIf="testCase.platform.length != 0" class="example-chip" cdkDropList >
+                <span style="font-size: large;font-weight: bold;"> Platforms :
+                
+                    <button mat-icon-button color="primary" (click)='addPlatform()'>
+                     <mat-icon >add</mat-icon></button> 
+                 
+                 </span>       
+            <mat-chip class="example-box" *ngFor="let plat of testCase.platform">
+
+            {{plat.platform}}
+  
+        </mat-chip>
+  
+    </mat-chip-list>
+    
+           
+        </div>
+
+  </mat-card>
+
+</mat-grid-tile>
+
+
+</mat-grid-list>

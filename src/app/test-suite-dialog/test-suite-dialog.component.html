@@ -1,0 +1,46 @@
+
+<span style="float: right;" class="menu">
+
+    <button mat-button  [matMenuTriggerFor]="afterMenu"><mat-icon>reorder</mat-icon></button> 
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+        <a routerLink="addtotestplan">
+    
+    </a>
+    <button (click)='delete()' mat-menu-item><mat-icon>delete_outline</mat-icon> Delete</button>
+
+    </mat-menu>
+</span>
+<mat-card-header>
+    
+    <mat-card-title>Test Suite </mat-card-title>
+    
+    <mat-card-subtitle> {{data.testSuite.name}} </mat-card-subtitle>
+</mat-card-header>
+<hr>
+    
+    <div *ngIf="data.testSuite.details != null">
+        <h3> Details </h3>
+        <p> {{data.testSuite.details}} </p>
+    </div>
+    <button (click)='importTCDialog()' mat-menu-item><mat-icon>note_add</mat-icon>Import Test Case from Lib</button>
+
+    <!-- <mat-expansion-panel (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+<mat-expansion-panel-header>
+<mat-panel-title>
+
+<mat-icon>attach_file</mat-icon>Import Test Case from CSV File
+
+</mat-panel-title>
+<mat-panel-description>
+</mat-panel-description>
+</mat-expansion-panel-header>
+<input class="form-control" type="file" 
+    (change)="onChange($event)">
+
+<button (click)="onUpload()" 
+class="btn btn-success">
+Upload
+</button>
+</mat-expansion-panel> -->
+     

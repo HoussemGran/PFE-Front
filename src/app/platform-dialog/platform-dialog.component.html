@@ -1,0 +1,11 @@
+
+
+<mat-selection-list #platforms>
+    <mat-list-option [value]='item' *ngFor="let item of platform">
+      {{item.platform}}
+    </mat-list-option>
+  </mat-selection-list>
+
+  <button (click)='save(platforms.selectedOptions.selected)' mat-stroked-button color="primary">
+  Save 
+</button>

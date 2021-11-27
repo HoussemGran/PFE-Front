@@ -1,0 +1,92 @@
+<app-navbar></app-navbar>
+
+<mat-grid-list cols="3">
+    <mat-grid-tile>
+        
+       <app-tree></app-tree>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile style="height: 350px;">
+        
+        <form [formGroup]="addTestCase" (submit)="submit()" autocomplete="off">
+
+            <mat-form-field class="example-form" appearance = "fill">
+               <mat-label> Test Case Title </mat-label> 
+                <input matInput formControlName="title" required>
+                <mat-error *ngIf="addTestCase.controls.title.invalid">
+                    <span> This field is required </span>
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+        
+            <mat-form-field appearance = "fill" class="example-form">
+                <mat-label> Preconditions </mat-label>
+                <textarea formControlName="preconditions" style="height: 100px;" matInput placeholder="Preconditions"></textarea>
+              </mat-form-field>
+
+              <br><br>
+              <mat-form-field appearance = "fill" class="example-form">
+                <mat-label> Summary </mat-label>
+                <textarea formControlName="summary" style="height: 100px;" matInput placeholder="Summary"></textarea>
+              </mat-form-field>
+              <br><br>
+
+              <mat-form-field appearance='fill'>
+                <mat-label> Status </mat-label>
+                <mat-select  formControlName="status">
+                    <mat-option  *ngFor="let statut of status" [value]="statut.value"> 
+                    {{statut.title}}
+                 </mat-option>
+                 
+                </mat-select>
+                <mat-error *ngIf="addTestCase.controls.title.invalid">
+                  <span> This field is required </span>
+              </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance='fill'>
+                <mat-label> Importance </mat-label>
+                <mat-select formControlName="importance">
+                    <mat-option *ngFor="let important of importance" [value]="important.value"> 
+                    {{important.title}}
+                 </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addTestCase.controls.title.invalid">
+                  <span> This field is required </span>
+              </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance='fill'>
+                <mat-label> Execution Type </mat-label>
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let type of types" [value]="type.value"> 
+                    {{type.title}}
+                 </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addTestCase.controls.title.invalid">
+                  <span> This field is required </span>
+              </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance='fill'>
+                  <mat-label> Estimated Duration (min) </mat-label>
+                <input matInput type="number" formControlName="duration">
+              </mat-form-field>
+
+              <input type="hidden" formControlName="projectID" [(ngModel)]='projectID'>
+              <input type="hidden" formControlName="testSuiteID" [(ngModel)]='testSuiteID'>
+              <br>  
+            <button mat-raised-button color="primary"> Create </button>  
+            <button mat-stroked-button color="basic" type="reset"> Cancel </button>  
+        </form>
+        
+    </mat-grid-tile>
+
+    
+    <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>
+
+
+
+

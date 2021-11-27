@@ -1,0 +1,25 @@
+.mat-accordion{
+    
+}
+
+.mat-grid-tile{
+    height: 300px;
+}
+
+.my-grid-tile {
+    padding-top: 1px !important;
+}
+
+.margin{
+
+    margin: 2rem;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+}
+
+mat-form-field{
+    width: 100%;
+}

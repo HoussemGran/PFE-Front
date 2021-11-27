@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+
+<div class="margin">
+    <!-- Show test cases -->
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+           My Test Cases
+          </mat-panel-title>
+          <mat-panel-description>
+            Click to show Test Cases
+          </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-selection-list #list [multiple]="false">
+        <mat-list-option (click)="dialogTC(list)" [value]='item._id' *ngFor="let item of testCases">
+          {{item.title}}
+        </mat-list-option>
+      </mat-selection-list>
+</mat-expansion-panel>
+</mat-accordion>
+</div>

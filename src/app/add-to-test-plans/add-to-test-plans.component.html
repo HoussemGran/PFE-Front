@@ -1,0 +1,61 @@
+ 
+<app-navbar></app-navbar>
+
+<mat-grid-list cols="3">
+    <mat-grid-tile style="height: 500px;">
+        
+       <app-tree></app-tree>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="1" style="height: 500px;">
+        
+<mat-card  style="width: 90%;position: absolute;top: 0px;">
+   <mat-card-header>
+   <mat-card-title *ngIf="testCase">Test Case : {{prefix}} : {{testCase.title}}
+   </mat-card-title> 
+    <br><br>
+    
+   </mat-card-header>
+
+   <h3> Add test case version to Test Plans </h3>
+
+      <form [formGroup]="form" (submit)='submit()'>
+     
+   <div class="container">
+      
+      <ul class="responsive-table">
+
+        <li class="table-header">
+          <div class="col col-1"></div>
+          <div class="col col-2">Version</div>
+          <div class="col col-3">Test plan</div>
+          <div class="col col-4">Platform</div>
+        </li>
+
+        <li class="table-row"  *ngFor="let item of testPlans">
+          <div class="col col-1" data-label="check">
+             
+            <mat-checkbox *ngIf="!assignedTestPlans.includes(item._id)"
+            [(ngModel)]="item._id" 
+            name="item.name" 
+            (change)="onChange($e,item)"> 
+            </mat-checkbox>
+         </div>
+      
+          <div class="col col-2" data-label="Version" name="version"> 1 </div>
+          <div class="col col-3" data-label="TestPlan" name="testPlan"> {{item.name}} </div>
+          <div class="col col-4" data-label="Platform" name="platform">  </div>
+        </li>
+
+      </ul>
+   <button mat-raised-button color="primary" type="submit">Add</button>
+    <button mat-raised-button color="accent" type="reset"> Cancel </button>
+    </div>
+
+   </form>
+
+</mat-card>
+</mat-grid-tile>
+
+</mat-grid-list> 

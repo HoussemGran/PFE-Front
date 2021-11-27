@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<div class="erreur" *ngIf="!build">
+  <p>Execute Tests</p>
+
+  At least one Build (Active & Open) is needed for this Test Plan <br />
+  <br />
+
+  <a [routerLink]="['/admin/builds/add']"> Create a new build </a>
+</div>
+
+<div *ngIf="build">
+  <mat-card>
+    <mat-card-header>
+      <div></div>
+      <mat-card-title> Test plan : {{ testplan }} </mat-card-title>
+      <mat-card-title> Build : {{ build }} </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngFor="let item of myArray">
+        
+        <mat-card [class]="item.status">
+          <a [routerLink]="[item['testCaseID']]">
+          {{ item["testSuite"] }} - {{ item["testCase"] }}</a>
+
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

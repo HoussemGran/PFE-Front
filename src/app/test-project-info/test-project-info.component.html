@@ -1,0 +1,13 @@
+<mat-card>
+    <span style="float: right;" class="menu">
+    <button mat-button  [matMenuTriggerFor]="afterMenu"><mat-icon>list</mat-icon></button> 
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+    <button routerLink='addTS' mat-menu-item><mat-icon>control_point</mat-icon> Test suite</button>
+    </mat-menu>
+</span>
+    <h2> Test project name :</h2>
+    <p> {{projectName}} </p>
+    <h2> Description :</h2>
+    <p> {{projectDescription}} </p>
+    
+  </mat-card>

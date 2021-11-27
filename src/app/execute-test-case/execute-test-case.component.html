@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+<!-- <h3> {{date | date:'d/M/yyyy, h:mm a'}} </h3> -->
+<mat-card>
+  <mat-card-header>
+    <div></div>
+    <mat-card-subtitle> Test plan : {{ testPlan }} </mat-card-subtitle>
+    <mat-card-subtitle> Build : {{ build }} </mat-card-subtitle>
+    <mat-card-subtitle *ngIf="platform"> Platform : Android </mat-card-subtitle>
+    <mat-card-subtitle> Test Suite : Sprint 1 </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <mat-card *ngIf="lastExecution.length > 0" [class]="bgColor"> 
+        <mat-card-subtitle style="color: white;">
+          Last execution
+        </mat-card-subtitle>
+        <p *ngFor="let item of lastExecution" style="color: white;">
+          Date : {{item.dateRun | date:'d/M/yyyy, h:mm a'}} - 
+          Tested By : {{item.runBy}} - 
+          Build : {{item.build}} -
+          Status : {{item.status}}
+        </p>
+      </mat-card>
+
+
+      <mat-card>
+        <mat-card-title> Test Case : {{testCaseTitle}} </mat-card-title>
+
+        <mat-card-content>
+          <form [formGroup]="executeForm" (submit)="submit($event)">
+            <mat-form-field style="width: 50%" appearance="fill">
+              <mat-label>Notes</mat-label>
+              <textarea
+                matInput
+                formControlName="notes"
+                style="height: 200px"
+                placeholder="Write your notes.."
+              ></textarea>
+            </mat-form-field>
+
+            <input
+              type="hidden"
+              formControlName="projectID"
+              [(ngModel)]="projectID"
+            />
+            <input
+              type="hidden"
+              formControlName="testPlanID"
+              [(ngModel)]="testplanID"
+            />
+            <input
+              type="hidden"
+              formControlName="testCaseID"
+              [(ngModel)]="testCaseID"
+            />
+
+            <input type="hidden" formControlName="build" [(ngModel)]="build" />
+            <input type="hidden" formControlName="runBy" [(ngModel)]="runBy" />
+            <input type="hidden" formControlName="status" [(ngModel)]="state" />
+
+            <div style="position: absolute; left: 60%; bottom: 130px">
+              <button
+                type="submit"
+                name="passed"
+                title="Click to set to Passed"
+              >
+                <mat-icon>sentiment_very_satisfied</mat-icon>
+              </button>
+              <button
+                type="submit"
+                name="failed"
+                title="Click to set to Failed"
+              >
+                <mat-icon>sentiment_very_dissatisfied</mat-icon>
+              </button>
+              <button
+                type="submit"
+                name="blocked"
+                title="Click to set to Blocked"
+              >
+                <mat-icon>sentiment_satisfied</mat-icon>
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>

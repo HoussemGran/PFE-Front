@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+
+<table style="margin-top: 30px;width: 100%;" mat-table [dataSource]="DATA" class="mat-elevation-z8">
+
+    
+    <ng-container matColumnDef="platform">
+      <th mat-header-cell *matHeaderCellDef> Platform </th>
+     <td mat-cell *matCellDef="let element"> <a routerLink={{element._id}}>{{element.platform}}</a> </td> 
+    </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="onDesign">
+        <th mat-header-cell *matHeaderCellDef> On Design </th>
+        <td mat-cell *matCellDef="let element"> {{element.onDesign}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="onExecution">
+        <th mat-header-cell *matHeaderCellDef> On Execution </th>
+        <td mat-cell *matCellDef="let element"> {{element.onExecution}} </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> delete </th>
+        <td mat-cell *matCellDef="let element" > 
+    <mat-icon (click)='delete(element._id)' style="cursor: pointer;">delete_forever</mat-icon>
+    </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  <a [routerLink]="['add']" > <button style="margin-top: 30px;margin-left: 20px;" mat-raised-button color="primary">Create</button></a> 

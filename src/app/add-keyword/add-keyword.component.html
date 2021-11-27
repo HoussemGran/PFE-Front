@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+<div class="container" style="margin-top: 100px;">
+    <div class="form-container">
+      <form [formGroup]="addKeywordForm" (submit)="submit()" autocomplete="off">
+  
+        <mat-form-field class="example-full-width" appearance="fill" >
+          
+          <mat-label> Keyword </mat-label>
+          <input matInput formControlName="keyword" >
+          <mat-error>
+          <span *ngIf="addKeywordForm.controls.keyword.errors"> This field is required </span>
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width"  appearance="fill">
+          <mat-label> Description
+          </mat-label>
+          <textarea matInput formControlName="description" style="height: 100px;"> </textarea>
+        </mat-form-field>
+        <br>
+        <input type="hidden" formControlName="projectID" [(ngModel)]="projectID">
+        <button mat-raised-button color="primary" type="submit">Create</button>
+        <button mat-raised-button color="accent" type="reset">Cancel</button>
+        
+      </form>
+    </div>
+  </div>

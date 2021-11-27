@@ -1,0 +1,67 @@
+
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest</title>
+</head>
+<body>
+
+  <app-navbar></app-navbar>
+  <mat-grid-list cols="3">
+    <mat-grid-tile style="height: 250px;">
+      
+      <mat-list role="list" style="position: absolute;top: 10px;left: 10px;width: 100%;">
+        <div>
+       <a *ngFor="let item of leftItems">
+      <mat-list-item [routerLink]="item.link"
+       style="background-color: silver ;margin-top: 10px;cursor: pointer;" role="listitem">
+        <mat-icon>{{item.emoji}} </mat-icon>
+        {{item.title}}
+      </mat-list-item>
+    </a>
+  </div>
+      </mat-list>
+      
+      
+    </mat-grid-tile>
+   
+    
+    <mat-grid-tile style="height: 250px;">
+      
+      <mat-form-field  *ngIf="isPlan.length > 0" appearance="fill" style="position: absolute;top: 30px">
+        <mat-label>test Plan</mat-label>
+        <mat-select (selectionChange)="onChange($event)" [(value)]="selectedPlan">
+          <mat-option *ngFor="let plan of plans" [value]="plan.name">
+              {{plan.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      
+    </mat-grid-tile>
+
+    <mat-grid-tile style="height: 250px;">
+      
+      <mat-list  role="list" style="position: absolute;top: 10px;left: 10px;width: 100%;">
+        
+       
+
+        <div>
+        <a *ngFor="let item of rightItems">
+       <mat-list-item  [routerLink]="item.link" 
+       style="background-color: silver ;margin-top: 10px;cursor: pointer;" role="listitem">
+       <mat-icon> {{item.emoji}} </mat-icon>
+          {{item.title}}
+       </mat-list-item>
+      </a>
+    </div>
+       </mat-list>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+</body>
+</html>

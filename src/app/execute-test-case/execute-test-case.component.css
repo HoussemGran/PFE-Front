@@ -1,0 +1,13 @@
+
+.passed{
+    background-color: darkgreen;
+}
+
+.failed{
+    background-color: darkred;
+}
+
+.blocked{
+    background-color: darkblue;
+}
+
